@@ -18,7 +18,7 @@ public class TrackingsOpenHelper extends SQLiteOpenHelper {
 			"CREATE TABLE " + TRACKINGS_TABLE_NAME + "(" +
 				TRACKINGS_KEY_TIME + " DATETIME," +
 				TRACKINGS_KEY_LAT  + " FLOAT,"    +
-				TRACKINGS_KEY_LONG + "long FLOAT" +
+				TRACKINGS_KEY_LONG + " FLOAT" +
 			")";
 
 	public TrackingsOpenHelper(Context context) {
