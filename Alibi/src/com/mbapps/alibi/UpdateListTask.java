@@ -1,3 +1,7 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ *  * License, v. 2.0. If a copy of the MPL was not distributed with this
+ *   * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
 package com.mbapps.alibi;
 
 import java.util.List;
@@ -16,24 +20,24 @@ import android.os.AsyncTask;
  */
 public class UpdateListTask extends AsyncTask<Object, Void, TrackEventAdapter> {
 	Database trackingsKeeper;
-	
+
 	public UpdateListTask(Context context) {
 		this.trackingsKeeper = Database.getInstance(context);
 	}
-	
+
 	@Override
 	protected TrackEventAdapter doInBackground(Object... args) {
 		@SuppressWarnings("unchecked")
 		List<TrackEvent> list = (List<TrackEvent>) args[0];
-		
+
 		// Clear the old list
 		list.clear();
 		// Add database rows
 		list.addAll(this.trackingsKeeper.getTrackEvents());
-		
+
 		return (TrackEventAdapter) args[1];
 	}
-	
+
 	@Override
 	protected void onPostExecute(TrackEventAdapter trackEventAdapter) {
 		trackEventAdapter.notifyDataSetChanged();

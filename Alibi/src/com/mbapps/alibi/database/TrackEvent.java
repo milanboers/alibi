@@ -1,3 +1,7 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ *  * License, v. 2.0. If a copy of the MPL was not distributed with this
+ *   * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
 package com.mbapps.alibi.database;
 
 
@@ -14,14 +18,14 @@ public class TrackEvent {
 	private long timeEnd;
 	private Location locStart;
 	private Location locEnd;
-	
+
 	public TrackEvent(long timeStart, long timeEnd, Location locStart, Location locEnd) {
 		this.timeStart = timeStart;
 		this.timeEnd = timeEnd;
 		this.locStart = locStart;
 		this.locEnd = locEnd;
 	}
-	
+
 	public TrackEvent(long timeStart, long timeEnd, double latStart, double longStart, double latEnd, double longEnd) {
 		this.timeStart = timeStart;
 		this.timeEnd = timeEnd;
@@ -32,7 +36,7 @@ public class TrackEvent {
 		this.locEnd.setLatitude(latEnd);
 		this.locEnd.setLongitude(longEnd);
 	}
-	
+
 	public TrackEventType getType() {
 		if(this.timeStart == this.timeEnd)
 			return TrackEventType.POINT;
@@ -41,12 +45,12 @@ public class TrackEvent {
 		else
 			return TrackEventType.TRAVEL;
 	}
-	
+
 	@Override
 	public String toString() {
-		/*return this.locStart.getLatitude() + " " + 
-		       this.locStart.getLongitude() + " / " + 
-		       this.locEnd.getLatitude() + " " + 
+		/*return this.locStart.getLatitude() + " " +
+		       this.locStart.getLongitude() + " / " +
+		       this.locEnd.getLatitude() + " " +
 		       this.locEnd.getLongitude();*/
 		return this.timeStart + " " + this.timeEnd;
 	}

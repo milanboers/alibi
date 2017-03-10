@@ -1,3 +1,7 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ *  * License, v. 2.0. If a copy of the MPL was not distributed with this
+ *   * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
 package com.mbapps.alibi.activities;
 
 import java.util.ArrayList;
@@ -21,48 +25,48 @@ import android.widget.ListView;
 
 public class MainActivity extends Activity implements Observer {
 	private static final String TAG = "MainActivity";
-	
+
 	private final List<TrackEvent> trackEvents = new ArrayList<TrackEvent>();
 	private TrackEventAdapter trackEventAdapter;
-	
+
 	private Database trackingsKeeper;
-	
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        
+
         Log.v(TAG, "oncreate");
-        
+
 		this.trackingsKeeper = Database.getInstance(this);
-        
+
         this.startService(new Intent(this, TrackingService.class));
-        
+
         // Setup the list
         ListView listView = (ListView) findViewById(R.id.track_events_list);
         this.trackEventAdapter = new TrackEventAdapter(
         		this,
-        		R.layout.trackeventlist_item, 
+        		R.layout.trackeventlist_item,
         		this.trackEvents);
         listView.setAdapter(this.trackEventAdapter);
-        
+
         // Initialize the list
         this.updateList();
-        
+
         // Register to database changes
         this.trackingsKeeper.addObserver(this);
     }
-    
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.activity_main, menu);
         return true;
     }
-    
+
     public void update(Observable observable, Object data) {
     	this.updateList();
     }
-    
+
     /**
      * Updates the listview with the database info
      */

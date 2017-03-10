@@ -1,3 +1,7 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ *  * License, v. 2.0. If a copy of the MPL was not distributed with this
+ *   * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
 package com.mbapps.alibi;
 
 import java.util.List;
@@ -15,14 +19,14 @@ import android.widget.TextView;
 public class TrackEventAdapter extends ArrayAdapter<TrackEvent> {
 	private Context context;
 	private List<TrackEvent> data;
-	
+
 	public TrackEventAdapter(Context context, int layoutResourceId, List<TrackEvent> data) {
 		super(context, layoutResourceId, data);
-		
+
 		this.context = context;
 		this.data = data;
 	}
-	
+
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		View v = convertView;
@@ -31,12 +35,12 @@ public class TrackEventAdapter extends ArrayAdapter<TrackEvent> {
 			LayoutInflater inflater = LayoutInflater.from(this.context);
 			v = inflater.inflate(R.layout.trackeventlist_item, null);
 		}
-		
+
 		TrackEvent trackEvent = data.get(position);
 		if(trackEvent != null) {
 			TextView text = (TextView) v.findViewById(R.id.trackeventlist_item_text);
 			text.setText(trackEvent.toString());
-			
+
 			switch(trackEvent.getType()) {
 				case POINT:
 					v.setBackgroundColor(Color.GRAY);
@@ -49,7 +53,7 @@ public class TrackEventAdapter extends ArrayAdapter<TrackEvent> {
 					break;
 			}
 		}
-		
+
 		return v;
 	}
 }
